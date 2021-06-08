@@ -1,10 +1,14 @@
-import { ensureQueue } from "../common";
+import amqp from "amqplib";
 
 async function main() {
   const queue = "hello";
   const msg = "Hello world";
-  const { connection, channel } = await ensureQueue(queue);
+  const connection = await amqp.connect("amqp://localhost");
+  const channel = await connection.createChannel();
 
+  channel.assertQueue(queue, {
+    durable: false,
+  });
   channel.sendToQueue(queue, Buffer.from(msg));
 
   setTimeout(async () => {

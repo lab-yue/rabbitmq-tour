@@ -1,8 +1,13 @@
-import { ensureQueue } from "../common";
+import amqp from "amqplib";
 
 async function main() {
   const queue = "task_queue";
-  const { channel } = await ensureQueue(queue);
+  const connection = await amqp.connect("amqp://localhost");
+  const channel = await connection.createChannel();
+
+  channel.assertQueue(queue, {
+    durable: false,
+  });
 
   // to Fair dispatch
   channel.prefetch(1);

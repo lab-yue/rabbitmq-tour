@@ -1,0 +1,19 @@
+{
+  "name": "rabbitmq-tour",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:lab-yue/rabbitmq-tour.git",
+  "author": "rainy-me <github@rainy.me>",
+  "license": "MIT",
+  "scripts": {
+    "ts": "ts-node --files --transpile-only"
+  },
+  "dependencies": {
+    "amqplib": "^0.8.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.8.0"
+  }
+}
